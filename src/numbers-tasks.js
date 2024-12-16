@@ -273,8 +273,8 @@ function getFibonacciNumber(index) {
 
   const char = {};
 
-  if (!char.hasOwnProperty(index)) {
-    char[index] = fib(char - 1) + fib(char - 2);
+  if (!Object.prototype.hasOwnProperty.call(char, index)) {
+    char[index] = Math.fib(char - 1) + Math.fib(char - 2);
   }
 
   return char[index];
@@ -293,7 +293,7 @@ function getFibonacciNumber(index) {
  */
 function getSumToN(n) {
   let sum;
-  for (let i = 1; i <= n; i++) {
+  for (let i = 1; i <= n; i += 1) {
     sum += i;
   }
   return sum;
@@ -314,8 +314,8 @@ function getSumOfDigits(num) {
   const numStr = num.toString();
 
   let numSum = 0;
-  for (let i = 0; i < numStr.length; i++) {
-    numSum += parseInt(numStr[i]);
+  for (let i = 0; i < numStr.length; i += 1) {
+    numSum += parseInt(numStr[i], 10);
   }
   return numSum;
 }
@@ -375,7 +375,7 @@ function numberToStringInBase(/* number, base */) {
  * 12345, 2    => '1.23e+4'
  */
 function toExponential(number, fractionDigits) {
-  return num.toExponential(fractionDigits);
+  return number.toExponential(fractionDigits);
 }
 
 /**
@@ -410,7 +410,7 @@ function toPrecision(number, precision) {
   const numStr = number.toString();
   let resultNum = '';
 
-  for (let i = 0; i < precision && i < numStr.length; i++) {
+  for (let i = 0; i < precision && i < numStr.length; i += 1) {
     resultNum += numStr[i];
   }
 
@@ -454,7 +454,7 @@ function getNumberValue(number) {
  */
 
 function isNumber(number) {
-  return number === parseInt(number);
+  return number === parseInt(number, 10);
 }
 
 /**
@@ -518,7 +518,7 @@ function getIntegerOnString(/* str, base */) {
  * 3.5      => false
  * 2 ** 53  => false
  */
-function isSafeInteger(number) {
+function isSafeInteger(/* number */) {
   throw new Error('Not implemented');
 }
 
